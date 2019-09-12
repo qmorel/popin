@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PopIn démo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="app.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="Section">
+        <div class="Section-inner">
+            <button type="button" class="Btn js-popin-open" data-popin-open="popin1">
+                Simple
+            </button>
+            <div class="PopinDemo-content is-rtf">
+                <h1>Basic implementation</h1>
+                <p>It's recommanded to set the popin in a new entry of target node. So you can access options and function <easily></easily></p>
+                <pre>document.querySelector('.js-popin').popin = new Popin(element)</pre>
+                <p>The HTML: </p>
+                <pre>
+&lt;div class=&quot;Popin js-popin&quot; data-popin=&quot;popin1&quot; tabindex=&quot;-1&quot; aria-hidden=&quot;1&quot;&gt;
+    &lt;div class=&quot;Popin-main js-popin-main&quot;&gt;
+        &lt;button class=&quot;CloseBtn Popin-close js-popin-close&quot; data-popin-close=&quot;popin1&quot;&gt;
+            Close
+        &lt;/button&gt;
+        &lt;div class=&quot;Popin-content js-popin-content is-rtf&quot;&gt;
+            contenu de la popin
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+            <div class="Popin js-popin" data-popin="popin1" tabindex="-1" aria-hidden="1">
+                <div class="Popin-main js-popin-main">
+                    <button class="CloseBtn Popin-close js-popin-close" data-popin-close="popin1">
+                        Close
+                    </button>
+                    <div class="Popin-content js-popin-content is-rtf">
+                        contenu de la popin
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Section">
+        <div class="Section-inner">
+            <button type="button" class="Btn js-popin-custom-open" data-popin-open="popin-custom">
+                Custom markup
+            </button>
+            <div class="PopinDemo-content is-rtf">
+                <h1>Custom markup</h1>
+                <p>You can change the markup, and selector so, but you have to keep some data-attributes and the HTML structure</p>
+                <pre>
+data-popin="{popinId}" on main container
+data-popin-open="{popinId}" on the open button/link
+data-popin-close="{popinId}" on the close button/link</pre>
+                <p>Available changes for selectors:</p>
+                <pre>
+selectors: {
+    btnOpen: '.js-popin-open',
+    btnClose: '.js-popin-close',
+    popinMain: '.js-popin-main',
+    popinContent: '.js-popin-content'
+}</pre>
+            </div>
+            <div class="Popin js-popin-custom" data-popin="popin-custom" tabindex="-1" aria-hidden="1">
+                <div class="Popin-main js-popin-custom-main">
+                    <button class="CloseBtn Popin-close js-popin-custom-close" data-popin-close="popin-custom">
+                        Close
+                    </button>
+                    <div class="Popin-content js-popin-custom-content is-rtf">
+                        <p>Contenu de la popin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Section">
+        <div class="Section-inner">
+            <button type="button" class="Btn js-popin-open" data-popin-open="popin-load">
+                Load content when open
+            </button>
+            <div class="PopinDemo-content is-rtf">
+                <h1>Loading external content: json</h1>
+                <p>Load option can be override in html with the data attribute <code>data-popin-load</code></p>
+                <pre>
+element.popin = new Popin(element, {
+    load: 'https://jsonplaceholder.typicode.com/posts/1',
+    loadType: 'json',
+    loadSelector: 'body',
+})</pre>
+<p>You can also load HTML content by setting <code>loadType: 'html'</code> options and use the <code>loadSelector</code> options like a querySelector.</p>
+            </div>
+            <div class="Popin js-popin-load" data-popin="popin-load" tabindex="-1" aria-hidden="1">
+                <div class="Popin-main js-popin-main">
+                    <button class="CloseBtn Popin-close js-popin-close" data-popin-close="popin-load">
+                        Fermer
+                    </button>
+                    <div class="Popin-content js-popin-content is-rtf">
+                        <p>Contenu de la popin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Popin js-popin-opened" data-popin="popin-opened" tabindex="-1" aria-hidden="1">
+        <div class="Popin-main js-popin-main">
+            <button class="CloseBtn Popin-close js-popin-close" data-popin-close="popin-opened">
+                Close
+            </button>
+            <div class="Popin-content js-popin-content is-rtf">
+                <p>This popin is open by default</p>
+                <p>When you close it, it open an other popin because of the <code>openThen</code> option.</p>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
